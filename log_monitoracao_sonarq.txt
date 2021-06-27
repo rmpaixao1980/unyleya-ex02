@@ -1,0 +1,330 @@
+Iniciado pelo usuário Rafael
+Running as SYSTEM
+Construindo no workspace /var/lib/jenkins/workspace/Monitoramento-Rafael_Marques_da_Paixao
+[WS-CLEANUP] Deleting project workspace...
+[WS-CLEANUP] Deferred wipeout is used...
+[WS-CLEANUP] Done
+The recommended git tool is: NONE
+using credential GitJenkins
+Cloning the remote Git repository
+Cloning repository git@github.com:rmpaixao1980/MobEAD-1.git
+ > git init /var/lib/jenkins/workspace/Monitoramento-Rafael_Marques_da_Paixao # timeout=10
+Fetching upstream changes from git@github.com:rmpaixao1980/MobEAD-1.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.25.1'
+using GIT_SSH to set credentials 
+ > git fetch --tags --force --progress -- git@github.com:rmpaixao1980/MobEAD-1.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url git@github.com:rmpaixao1980/MobEAD-1.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 98afb2a36d0ed57d01b92e83a638370ee72f94a7 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 98afb2a36d0ed57d01b92e83a638370ee72f94a7 # timeout=10
+Commit message: "Update index.html"
+ > git rev-list --no-walk 28c7382aa074ba212c9ebbf4b19253fd50178b22 # timeout=10
+[Monitoramento-Rafael_Marques_da_Paixao] $ /bin/sh -xe /tmp/jenkins241669224048807161.sh
++ docker run --rm -i hadolint/hadolint
+[Monitoramento-Rafael_Marques_da_Paixao] $ /bin/sh -xe /tmp/jenkins742387600809246076.sh
++ /opt/sonar-scanner-4.6.2.2472-linux/bin/sonar-scanner -Dsonar.projectKey=Jenkins -Dsonar.sources=. -Dsonar.host.url=http://127.0.0.1:9000 -Dsonar.login=92d23a0fd53b3092f7dbf15b42c20189baf04e5a
+INFO: Scanner configuration file: /opt/sonar-scanner-4.6.2.2472-linux/conf/sonar-scanner.properties
+INFO: Project root configuration file: NONE
+INFO: SonarScanner 4.6.2.2472
+INFO: Java 11.0.11 AdoptOpenJDK (64-bit)
+INFO: Linux 5.8.0-59-generic amd64
+INFO: User cache: /var/lib/jenkins/.sonar/cache
+INFO: Scanner configuration file: /opt/sonar-scanner-4.6.2.2472-linux/conf/sonar-scanner.properties
+INFO: Project root configuration file: NONE
+INFO: Analyzing on SonarQube server 8.9.1
+INFO: Default locale: "pt_BR", source code encoding: "UTF-8" (analysis is platform dependent)
+INFO: Load global settings
+INFO: Load global settings (done) | time=143ms
+INFO: Server id: BF41A1F2-AXpPAXi8AcM3K8tEr_7d
+INFO: User cache: /var/lib/jenkins/.sonar/cache
+INFO: Load/download plugins
+INFO: Load plugins index
+INFO: Load plugins index (done) | time=71ms
+INFO: Load/download plugins (done) | time=176ms
+INFO: Process project properties
+INFO: Process project properties (done) | time=13ms
+INFO: Execute project builders
+INFO: Execute project builders (done) | time=2ms
+INFO: Project key: Jenkins
+INFO: Base dir: /var/lib/jenkins/workspace/Monitoramento-Rafael_Marques_da_Paixao
+INFO: Working dir: /var/lib/jenkins/workspace/Monitoramento-Rafael_Marques_da_Paixao/.scannerwork
+INFO: Load project settings for component key: 'Jenkins'
+INFO: Load project settings for component key: 'Jenkins' (done) | time=21ms
+INFO: Auto-configuring with CI 'Jenkins'
+INFO: Load quality profiles
+INFO: Load quality profiles (done) | time=78ms
+INFO: Auto-configuring with CI 'Jenkins'
+INFO: Load active rules
+INFO: Load active rules (done) | time=2444ms
+INFO: Indexing files...
+INFO: Project configuration:
+INFO: Load project repositories
+INFO: Load project repositories (done) | time=39ms
+INFO: 287 files indexed
+INFO: 0 files ignored because of scm ignore settings
+INFO: Quality profile for css: Sonar way
+INFO: Quality profile for js: Sonar way
+INFO: Quality profile for web: Sonar way
+INFO: Quality profile for xml: Sonar way
+INFO: ------------- Run sensors on module Jenkins
+INFO: Load metrics repository
+INFO: Load metrics repository (done) | time=43ms
+INFO: Sensor CSS Metrics [cssfamily]
+INFO: Sensor CSS Metrics [cssfamily] (done) | time=1378ms
+INFO: Sensor CSS Rules [cssfamily]
+ERROR: CSS rules were not executed. Error when running: 'node -v'. Is Node.js available during analysis?
+org.sonarsource.nodejs.NodeCommandException: Error when running: 'node -v'. Is Node.js available during analysis?
+	at org.sonarsource.nodejs.NodeCommand.start(NodeCommand.java:81)
+	at org.sonarsource.nodejs.NodeCommandBuilderImpl.getVersion(NodeCommandBuilderImpl.java:181)
+	at org.sonarsource.nodejs.NodeCommandBuilderImpl.checkNodeCompatibility(NodeCommandBuilderImpl.java:159)
+	at org.sonarsource.nodejs.NodeCommandBuilderImpl.build(NodeCommandBuilderImpl.java:134)
+	at org.sonar.css.plugin.server.CssAnalyzerBridgeServer.initNodeCommand(CssAnalyzerBridgeServer.java:157)
+	at org.sonar.css.plugin.server.CssAnalyzerBridgeServer.startServer(CssAnalyzerBridgeServer.java:107)
+	at org.sonar.css.plugin.server.CssAnalyzerBridgeServer.startServerLazily(CssAnalyzerBridgeServer.java:177)
+	at org.sonar.css.plugin.CssRuleSensor.execute(CssRuleSensor.java:99)
+	at org.sonar.scanner.sensor.AbstractSensorWrapper.analyse(AbstractSensorWrapper.java:48)
+	at org.sonar.scanner.sensor.ModuleSensorsExecutor.execute(ModuleSensorsExecutor.java:85)
+	at org.sonar.scanner.sensor.ModuleSensorsExecutor.lambda$execute$1(ModuleSensorsExecutor.java:59)
+	at org.sonar.scanner.sensor.ModuleSensorsExecutor.withModuleStrategy(ModuleSensorsExecutor.java:77)
+	at org.sonar.scanner.sensor.ModuleSensorsExecutor.execute(ModuleSensorsExecutor.java:59)
+	at org.sonar.scanner.scan.ModuleScanContainer.doAfterStart(ModuleScanContainer.java:82)
+	at org.sonar.core.platform.ComponentContainer.startComponents(ComponentContainer.java:137)
+	at org.sonar.core.platform.ComponentContainer.execute(ComponentContainer.java:123)
+	at org.sonar.scanner.scan.ProjectScanContainer.scan(ProjectScanContainer.java:392)
+	at org.sonar.scanner.scan.ProjectScanContainer.scanRecursively(ProjectScanContainer.java:388)
+	at org.sonar.scanner.scan.ProjectScanContainer.doAfterStart(ProjectScanContainer.java:357)
+	at org.sonar.core.platform.ComponentContainer.startComponents(ComponentContainer.java:137)
+	at org.sonar.core.platform.ComponentContainer.execute(ComponentContainer.java:123)
+	at org.sonar.scanner.bootstrap.GlobalContainer.doAfterStart(GlobalContainer.java:150)
+	at org.sonar.core.platform.ComponentContainer.startComponents(ComponentContainer.java:137)
+	at org.sonar.core.platform.ComponentContainer.execute(ComponentContainer.java:123)
+	at org.sonar.batch.bootstrapper.Batch.doExecute(Batch.java:72)
+	at org.sonar.batch.bootstrapper.Batch.execute(Batch.java:66)
+	at org.sonarsource.scanner.api.internal.batch.BatchIsolatedLauncher.execute(BatchIsolatedLauncher.java:46)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at org.sonarsource.scanner.api.internal.IsolatedLauncherProxy.invoke(IsolatedLauncherProxy.java:60)
+	at com.sun.proxy.$Proxy0.execute(Unknown Source)
+	at org.sonarsource.scanner.api.EmbeddedScanner.doExecute(EmbeddedScanner.java:189)
+	at org.sonarsource.scanner.api.EmbeddedScanner.execute(EmbeddedScanner.java:138)
+	at org.sonarsource.scanner.cli.Main.execute(Main.java:112)
+	at org.sonarsource.scanner.cli.Main.execute(Main.java:75)
+	at org.sonarsource.scanner.cli.Main.main(Main.java:61)
+Caused by: java.io.IOException: Cannot run program "node": error=2, Arquivo ou diretório inexistente
+	at java.base/java.lang.ProcessBuilder.start(Unknown Source)
+	at java.base/java.lang.ProcessBuilder.start(Unknown Source)
+	at org.sonarsource.nodejs.NodeCommand$ProcessWrapperImpl.start(NodeCommand.java:162)
+	at org.sonarsource.nodejs.NodeCommand.start(NodeCommand.java:77)
+	... 37 common frames omitted
+Caused by: java.io.IOException: error=2, Arquivo ou diretório inexistente
+	at java.base/java.lang.ProcessImpl.forkAndExec(Native Method)
+	at java.base/java.lang.ProcessImpl.<init>(Unknown Source)
+	at java.base/java.lang.ProcessImpl.start(Unknown Source)
+	... 41 common frames omitted
+
+INFO: Sensor CSS Rules [cssfamily] (done) | time=1055ms
+INFO: Sensor JaCoCo XML Report Importer [jacoco]
+INFO: 'sonar.coverage.jacoco.xmlReportPaths' is not defined. Using default locations: target/site/jacoco/jacoco.xml,target/site/jacoco-it/jacoco.xml,build/reports/jacoco/test/jacocoTestReport.xml
+INFO: No report imported, no coverage information will be imported by JaCoCo XML Report Importer
+INFO: Sensor JaCoCo XML Report Importer [jacoco] (done) | time=8ms
+INFO: Sensor JavaScript analysis [javascript]
+ERROR: Error when running: 'node -v'. Is Node.js available during analysis?
+org.sonarsource.nodejs.NodeCommandException: Error when running: 'node -v'. Is Node.js available during analysis?
+	at org.sonarsource.nodejs.NodeCommand.start(NodeCommand.java:81)
+	at org.sonarsource.nodejs.NodeCommandBuilderImpl.getVersion(NodeCommandBuilderImpl.java:181)
+	at org.sonarsource.nodejs.NodeCommandBuilderImpl.checkNodeCompatibility(NodeCommandBuilderImpl.java:159)
+	at org.sonarsource.nodejs.NodeCommandBuilderImpl.build(NodeCommandBuilderImpl.java:134)
+	at org.sonar.plugins.javascript.eslint.EslintBridgeServerImpl.initNodeCommand(EslintBridgeServerImpl.java:174)
+	at org.sonar.plugins.javascript.eslint.EslintBridgeServerImpl.startServer(EslintBridgeServerImpl.java:119)
+	at org.sonar.plugins.javascript.eslint.EslintBridgeServerImpl.startServerLazily(EslintBridgeServerImpl.java:191)
+	at org.sonar.plugins.javascript.eslint.AbstractEslintSensor.startBridge(AbstractEslintSensor.java:150)
+	at org.sonar.plugins.javascript.eslint.AbstractEslintSensor.execute(AbstractEslintSensor.java:124)
+	at org.sonar.plugins.javascript.eslint.JavaScriptEslintBasedSensor.execute(JavaScriptEslintBasedSensor.java:52)
+	at org.sonar.scanner.sensor.AbstractSensorWrapper.analyse(AbstractSensorWrapper.java:48)
+	at org.sonar.scanner.sensor.ModuleSensorsExecutor.execute(ModuleSensorsExecutor.java:85)
+	at org.sonar.scanner.sensor.ModuleSensorsExecutor.lambda$execute$1(ModuleSensorsExecutor.java:59)
+	at org.sonar.scanner.sensor.ModuleSensorsExecutor.withModuleStrategy(ModuleSensorsExecutor.java:77)
+	at org.sonar.scanner.sensor.ModuleSensorsExecutor.execute(ModuleSensorsExecutor.java:59)
+	at org.sonar.scanner.scan.ModuleScanContainer.doAfterStart(ModuleScanContainer.java:82)
+	at org.sonar.core.platform.ComponentContainer.startComponents(ComponentContainer.java:137)
+	at org.sonar.core.platform.ComponentContainer.execute(ComponentContainer.java:123)
+	at org.sonar.scanner.scan.ProjectScanContainer.scan(ProjectScanContainer.java:392)
+	at org.sonar.scanner.scan.ProjectScanContainer.scanRecursively(ProjectScanContainer.java:388)
+	at org.sonar.scanner.scan.ProjectScanContainer.doAfterStart(ProjectScanContainer.java:357)
+	at org.sonar.core.platform.ComponentContainer.startComponents(ComponentContainer.java:137)
+	at org.sonar.core.platform.ComponentContainer.execute(ComponentContainer.java:123)
+	at org.sonar.scanner.bootstrap.GlobalContainer.doAfterStart(GlobalContainer.java:150)
+	at org.sonar.core.platform.ComponentContainer.startComponents(ComponentContainer.java:137)
+	at org.sonar.core.platform.ComponentContainer.execute(ComponentContainer.java:123)
+	at org.sonar.batch.bootstrapper.Batch.doExecute(Batch.java:72)
+	at org.sonar.batch.bootstrapper.Batch.execute(Batch.java:66)
+	at org.sonarsource.scanner.api.internal.batch.BatchIsolatedLauncher.execute(BatchIsolatedLauncher.java:46)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at org.sonarsource.scanner.api.internal.IsolatedLauncherProxy.invoke(IsolatedLauncherProxy.java:60)
+	at com.sun.proxy.$Proxy0.execute(Unknown Source)
+	at org.sonarsource.scanner.api.EmbeddedScanner.doExecute(EmbeddedScanner.java:189)
+	at org.sonarsource.scanner.api.EmbeddedScanner.execute(EmbeddedScanner.java:138)
+	at org.sonarsource.scanner.cli.Main.execute(Main.java:112)
+	at org.sonarsource.scanner.cli.Main.execute(Main.java:75)
+	at org.sonarsource.scanner.cli.Main.main(Main.java:61)
+Caused by: java.io.IOException: Cannot run program "node": error=2, Arquivo ou diretório inexistente
+	at java.base/java.lang.ProcessBuilder.start(Unknown Source)
+	at java.base/java.lang.ProcessBuilder.start(Unknown Source)
+	at org.sonarsource.nodejs.NodeCommand$ProcessWrapperImpl.start(NodeCommand.java:162)
+	at org.sonarsource.nodejs.NodeCommand.start(NodeCommand.java:77)
+	... 39 common frames omitted
+Caused by: java.io.IOException: error=2, Arquivo ou diretório inexistente
+	at java.base/java.lang.ProcessImpl.forkAndExec(Native Method)
+	at java.base/java.lang.ProcessImpl.<init>(Unknown Source)
+	at java.base/java.lang.ProcessImpl.start(Unknown Source)
+	... 43 common frames omitted
+
+INFO: Sensor JavaScript analysis [javascript] (done) | time=1872ms
+INFO: Sensor TypeScript analysis [javascript]
+INFO: No input files found for analysis
+INFO: Sensor TypeScript analysis [javascript] (done) | time=2ms
+INFO: Sensor C# Project Type Information [csharp]
+INFO: Sensor C# Project Type Information [csharp] (done) | time=2ms
+INFO: Sensor C# Properties [csharp]
+INFO: Sensor C# Properties [csharp] (done) | time=1ms
+INFO: Sensor JavaXmlSensor [java]
+INFO: 1 source file to be analyzed
+INFO: 1/1 source file has been analyzed
+INFO: Sensor JavaXmlSensor [java] (done) | time=243ms
+INFO: Sensor HTML [web]
+INFO: Sensor HTML [web] (done) | time=928ms
+INFO: Sensor XML Sensor [xml]
+INFO: 1 source file to be analyzed
+INFO: 1/1 source file has been analyzed
+INFO: Sensor XML Sensor [xml] (done) | time=230ms
+INFO: Sensor VB.NET Project Type Information [vbnet]
+INFO: Sensor VB.NET Project Type Information [vbnet] (done) | time=2ms
+INFO: Sensor VB.NET Properties [vbnet]
+INFO: Sensor VB.NET Properties [vbnet] (done) | time=2ms
+INFO: ------------- Run sensors on project
+INFO: Sensor Zero Coverage Sensor
+INFO: Sensor Zero Coverage Sensor (done) | time=6ms
+INFO: SCM Publisher SCM provider for this project is: git
+INFO: SCM Publisher 1 source file to be analyzed
+INFO: SCM Publisher 1/1 source file have been analyzed (done) | time=249ms
+INFO: CPD Executor 1 file had no CPD blocks
+INFO: CPD Executor Calculating CPD for 11 files
+INFO: CPD Executor CPD calculation finished (done) | time=49ms
+INFO: Analysis report generated in 209ms, dir size=2 MB
+INFO: Analysis report compressed in 425ms, zip size=866 KB
+INFO: Analysis report uploaded in 74ms
+INFO: ANALYSIS SUCCESSFUL, you can browse http://127.0.0.1:9000/dashboard?id=Jenkins
+INFO: Note that you will be able to access the updated dashboard once the server has processed the submitted analysis report
+INFO: More about the report processing at http://127.0.0.1:9000/api/ce/task?id=AXpPKuyIAcM3K8tEsEsl
+INFO: Analysis total time: 13.308 s
+INFO: ------------------------------------------------------------------------
+INFO: EXECUTION SUCCESS
+INFO: ------------------------------------------------------------------------
+INFO: Total time: 14.995s
+INFO: Final Memory: 13M/50M
+INFO: ------------------------------------------------------------------------
+Docker Build
+Docker Build: building image at path /var/lib/jenkins/workspace/Monitoramento-Rafael_Marques_da_Paixao
+Step 1/4 : FROM nginx:alpine
+
+
+ ---> a6eb2a334a9f
+
+Step 2/4 : COPY . /usr/share/nginx/html/
+
+
+ ---> 77ba6107501f
+
+Step 3/4 : COPY Web.config /etc/nginx/conf.d/Web.config
+
+
+ ---> 82c67892a282
+
+Step 4/4 : COPY index.html /usr/share/nginx/html/index.html
+
+
+ ---> 89eeb3fcea68
+
+Successfully built 89eeb3fcea68
+
+Tagging built image with rmpaixao1980/mobead_image_build:120
+Docker Build Response : 89eeb3fcea68
+Pushing [rmpaixao1980/mobead_image_build:120]
+The push refers to repository [docker.io/rmpaixao1980/mobead_image_build]
+2189a0b25e3a: Preparing
+87e51d6c05fc: Preparing
+9f887a4b6de7: Preparing
+058eb06e0efd: Preparing
+2f2df3ae0cad: Preparing
+2b60f0243825: Preparing
+96131b349b16: Preparing
+a42a23cd7b07: Preparing
+b2d5eeeaba3a: Preparing
+2b60f0243825: Waiting
+b2d5eeeaba3a: Waiting
+96131b349b16: Waiting
+a42a23cd7b07: Waiting
+058eb06e0efd: Layer already exists
+2f2df3ae0cad: Layer already exists
+2189a0b25e3a: Pushing [===>                                               ]     512B/7.715kB
+87e51d6c05fc: Pushing [==================================================>]     512B
+87e51d6c05fc: Pushing [==================================================>]  3.584kB
+2189a0b25e3a: Pushing [==================================================>]  11.78kB
+9f887a4b6de7: Pushing [>                                                  ]  329.7kB/30.53MB
+96131b349b16: Layer already exists
+2b60f0243825: Layer already exists
+9f887a4b6de7: Pushing [=>                                                 ]  657.4kB/30.53MB
+9f887a4b6de7: Pushing [=>                                                 ]  985.1kB/30.53MB
+9f887a4b6de7: Pushing [==>                                                ]   1.64MB/30.53MB
+9f887a4b6de7: Pushing [====>                                              ]  2.623MB/30.53MB
+9f887a4b6de7: Pushing [=====>                                             ]  3.607MB/30.53MB
+9f887a4b6de7: Pushing [========>                                          ]  4.893MB/30.53MB
+9f887a4b6de7: Pushing [========>                                          ]  5.218MB/30.53MB
+9f887a4b6de7: Pushing [==========>                                        ]  6.473MB/30.53MB
+9f887a4b6de7: Pushing [============>                                      ]   7.74MB/30.53MB
+9f887a4b6de7: Pushing [==============>                                    ]  8.691MB/30.53MB
+a42a23cd7b07: Layer already exists
+b2d5eeeaba3a: Layer already exists
+9f887a4b6de7: Pushing [================>                                  ]  10.24MB/30.53MB
+9f887a4b6de7: Pushing [==================>                                ]  11.51MB/30.53MB
+9f887a4b6de7: Pushing [====================>                              ]  12.74MB/30.53MB
+
+9f887a4b6de7: Pushing [======================>                            ]  13.97MB/30.53MB
+9f887a4b6de7: Pushing [========================>                          ]  14.89MB/30.53MB
+9f887a4b6de7: Pushing [==========================>                        ]  16.13MB/30.53MB
+9f887a4b6de7: Pushing [============================>                      ]   17.4MB/30.53MB
+9f887a4b6de7: Pushing [==============================>                    ]  18.64MB/30.53MB
+9f887a4b6de7: Pushing [================================>                  ]  19.56MB/30.53MB
+2189a0b25e3a: Pushed
+9f887a4b6de7: Pushing [=================================>                 ]   20.5MB/30.53MB
+9f887a4b6de7: Pushing [===================================>               ]  21.73MB/30.53MB
+9f887a4b6de7: Pushing [======================================>            ]  23.29MB/30.53MB
+9f887a4b6de7: Pushing [========================================>          ]  24.56MB/30.53MB
+
+9f887a4b6de7: Pushing [==========================================>        ]  25.81MB/30.53MB
+9f887a4b6de7: Pushing [============================================>      ]  27.07MB/30.53MB
+9f887a4b6de7: Pushing [==============================================>    ]  28.32MB/30.53MB
+9f887a4b6de7: Pushing [================================================>  ]  29.54MB/30.53MB
+9f887a4b6de7: Pushing [==================================================>]  30.78MB
+9f887a4b6de7: Pushing [==================================================>]  32.03MB
+87e51d6c05fc: Pushed
+9f887a4b6de7: Pushing [==================================================>]  33.32MB
+9f887a4b6de7: Pushing [==================================================>]  34.61MB
+
+9f887a4b6de7: Pushing [==================================================>]  35.87MB
+9f887a4b6de7: Pushing [==================================================>]  36.49MB
+
+9f887a4b6de7: Pushed
+
+120: digest: sha256:64816afcacafe774c0a222be91949c6231a0073dff40110ed681f6c08c78b3c0 size: 2195
+Docker Build Done
+Finished: SUCCESS

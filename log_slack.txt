@@ -1,0 +1,6 @@
+17h31
+[SUCESSO] Uma nova build está disponível em Desebnvolvimento  - http://192.168.0.21:8082/
+17h31
+[ALERTA] Para aplicar a mudança em produção, acesse [Janela de 10 minutos]: http://127.0.0.1:8080/job/Automatizada-Rafael_Marques_da_Paixao/
+17h32
+[SUCESSO] Uma nova build está disponível em Produção: http://192.168.0.21/

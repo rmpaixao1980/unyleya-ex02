@@ -1,0 +1,87 @@
+Iniciado pelo projeto superior "Monitoramento-Rafael_Marques_da_Paixao" builds número 120
+originalmente causado por:
+ Iniciado pelo usuário Rafael
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/Automatizada-Rafael_Marques_da_Paixao
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Removendo container antigo em DES)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ docker rm -f mobead_image_build-dev
+mobead_image_build-dev
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Subindo container de desenvolvimento)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ docker run -d -p 8082:80 --name=mobead_image_build-dev rmpaixao1980/mobead_image_build:120
+61b063e7b2285d72afabf81e0a8a05d9855f81d918e96153f0d1c7aced1ba9e1
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Notificando o usuario DES)
+[Pipeline] slackSend
+Slack Send Pipeline step running, values are - baseUrl: <empty>, teamDomain: posdevops, channel: pipeline-jenkins-alerts, color: good, botUser: false, tokenCredentialId: slack-tokem, notifyCommitters: false, iconEmoji: <empty>, username: <empty>, timestamp: <empty>
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Fazer o deploy em producao)
+[Pipeline] slackSend
+Slack Send Pipeline step running, values are - baseUrl: <empty>, teamDomain: posdevops, channel: pipeline-jenkins-alerts, color: warning, botUser: false, tokenCredentialId: slack-tokem, notifyCommitters: false, iconEmoji: <empty>, username: <empty>, timestamp: <empty>
+[Pipeline] timeout
+Timeout set to expire in 10 minutos
+[Pipeline] {
+[Pipeline] input
+Deploy em produção?
+Deploy or Abort
+Approved by Rafael
+[Pipeline] }
+[Pipeline] // timeout
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Removendo container antigo em PRD)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ docker rm -f mobead_image_build-prod
+mobead_image_build-prod
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Subindo container de produção)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ docker run -d -p 8084:80 --name=mobead_image_build-prod rmpaixao1980/mobead_image_build:120
+96dc8042bea0cb95ff9813885a366e48a5309f110ebaa79493e5a8a651a23c98
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Notificando o usuario PRD)
+[Pipeline] slackSend
+Slack Send Pipeline step running, values are - baseUrl: <empty>, teamDomain: posdevops, channel: pipeline-jenkins-alerts, color: good, botUser: false, tokenCredentialId: slack-tokem, notifyCommitters: false, iconEmoji: <empty>, username: <empty>, timestamp: <empty>
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

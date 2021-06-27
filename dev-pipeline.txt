@@ -1,0 +1,63 @@
+pipeline {  
+    environment {
+      dockerImage = '${image}'
+    }
+    agent any 
+    stages { 
+        stage('Removendo container antigo') { 
+            steps{ 
+                script {
+                    try {
+                        sh 'docker rm -f mobead_image_build-dev'
+                    } catch (Exception e) {
+                        sh "echo $e"
+                    }
+                }
+            }
+        }
+        stage('Subindo container de desenvolvimento') {
+            steps {
+                script {
+                    try {
+                        sh 'docker run -d -p 8082:80 --name=mobead_image_build-dev ' + dockerImage
+                    } catch (Exception e) {
+                        slackSend (color: 'erro', message: "[FALHA] Não foi pssível subir o container - ${BUILD_URL} em ${currentBuild.duration}s" , tokenCredentialId: 'slack-tokem')
+                        sh "echo $e"
+                        currentBuild.result = 'ABORTED'
+                        error('Erro')
+                    }
+                }
+            }
+        }
+        stage('Notificando o usuario') {
+            steps {
+                slackSend (color: 'good', message: "[SUCESSO] Uma nova build está disponível em http://192.168.0.21:8082/" , tokenCredentialId: 'slack-tokem')
+            }
+        }
+        stage ('Fazer o deploy em producao') {
+            steps {
+                slackSend (color: 'warning' , message: "[ALERTA] Para aplicar a mudança em produção, acesse [Janela de 10 minutos]: ${JOB_URL}", tokenCredentialId: 'slack-tokem')
+                timeout(time: 10, unit: 'MINUTES') {
+                    input(id: "Deploy Gate", message: "Deploy em produção?", ok: 'Deploy')
+                }
+               
+            }
+        }
+        stage (deploy) {
+            steps {
+                script {
+                    try {
+                        //build job: 'Producao-pipeline'
+                        build job: 'Producao-shellscript', parameters: [[$class: 'StringParameterValue', name: 'image', value: dockerImage]]
+                    } catch (Exception e) {
+                        slackSend (color: 'erro', message: "[FALHA] Não foi pssível subir o container em produção - ${BUILD_URL}" , tokenCredentialId: 'slack-tokem')
+                        sh "echo $e"
+                        currentBuild.result = 'ABORTED'
+                        error('Erro')
+                    }
+                    
+                }
+            }
+        }
+    } 
+}

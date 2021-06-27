@@ -1,0 +1,77 @@
+pipeline {  
+    environment {
+      dockerImage = '${image}'
+    }
+    agent any 
+    stages { 
+        stage('Removendo container antigo em DES') { 
+            steps{ 
+                script {
+                    try {
+                        sh 'docker rm -f mobead_image_build-dev'
+                    } catch (Exception e) {
+                        sh "echo $e"
+                    }
+                }
+            }
+        }
+        stage('Subindo container de desenvolvimento') {
+            steps {
+                script {
+                    try {
+                        sh 'docker run -d -p 8082:80 --name=mobead_image_build-dev ' + dockerImage
+                    } catch (Exception e) {
+                        slackSend (color: 'erro', message: "[FALHA] Não foi pssível subir o container - ${BUILD_URL} em ${currentBuild.duration}s" , tokenCredentialId: 'slack-tokem')
+                        sh "echo $e"
+                        currentBuild.result = 'ABORTED'
+                        error('Erro')
+                    }
+                }
+            }
+        }
+        stage('Notificando o usuario DES') {
+            steps {
+                slackSend (color: 'good', message: "[SUCESSO] Uma nova build está disponível em Desebnvolvimento  - http://192.168.0.21:8082/" , tokenCredentialId: 'slack-tokem')
+            }
+        }
+        stage ('Fazer o deploy em producao') {
+            steps {
+                slackSend (color: 'warning' , message: "[ALERTA] Para aplicar a mudança em produção, acesse [Janela de 10 minutos]: ${JOB_URL}", tokenCredentialId: 'slack-tokem')
+                timeout(time: 10, unit: 'MINUTES') {
+                    input(id: "Deploy Gate", message: "Deploy em produção?", ok: 'Deploy')
+                }
+               
+            }
+        }
+        stage('Removendo container antigo em PRD') { 
+            steps{ 
+                script {
+                    try {
+                        sh 'docker rm -f mobead_image_build-prod'
+                    } catch (Exception e) {
+                        sh "echo $e"
+                    }
+                }
+            }
+        }
+        stage('Subindo container de produção') {
+            steps {
+                script {
+                    try {
+                        sh 'docker run -d -p 8084:80 --name=mobead_image_build-prod ' + dockerImage
+                    } catch (Exception e) {
+                        slackSend (color: 'erro', message: "[FALHA] Não foi pssível subir o container em Produção- ${BUILD_URL} em ${currentBuild.duration}s" , tokenCredentialId: 'slack-tokem')
+                        sh "echo $e"
+                        currentBuild.result = 'ABORTED'
+                        error('Erro')
+                    }
+                }
+            }
+        }
+        stage('Notificando o usuario PRD') {
+            steps {
+                slackSend (color: 'good', message: "[SUCESSO] Uma nova build está disponível em Produção: http://192.168.0.21/" , tokenCredentialId: 'slack-tokem')
+            }
+        }
+    } 
+}

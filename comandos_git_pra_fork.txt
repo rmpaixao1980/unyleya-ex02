@@ -1,0 +1,3 @@
+git clone https://github.com/osanam-giordane/MobEAD.git
+git remote add ex3 https://github.com/rmpaixao1980/MobEAD-1.git
+git pull ex3 main
